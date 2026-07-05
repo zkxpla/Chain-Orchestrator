@@ -111,3 +111,19 @@ const engine = new ChainEngine(nodes, gate);
 
 // Sample asset stream
 const stream = [
+    { id: 1, value: 40, type: "coin", key: "yek_nimda" },
+    { id: 2, value: 80, type: "coin", key: "wrong_key" },
+    { id: 3, value: 120, type: "coin", key: "yek_nimda" }
+];
+
+// Execution loop (pipeline simulation)
+for (const asset of stream) {
+    const result = engine.run(new AssetUnit(
+        asset.id,
+        asset.value,
+        asset.type,
+        asset.key
+    ));
+
+    console.log(JSON.stringify(result, null, 2));
+}
